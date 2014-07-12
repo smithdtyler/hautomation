@@ -18,15 +18,17 @@
       var data = new google.visualization.DataTable();
       data.addColumn('datetime', 'Time');
       data.addColumn('number', 'Office Temp');
+      data.addColumn('number', 'HVAC Temp');
+      data.addColumn('number', 'Outside Temp');
       data.addRows([
       {% for sample in latest_sample_list %}
-        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}],
+        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}, {{ sample.hvactemp }}, {{ sample.outsidesouthtemp }}],
       {% endfor %}
       ]);
 
       // Set chart options
-      var options = {'title':'Temperature',
-                     'width':400,
+      var options = {'title':'Home Temperatures - Last Hour',
+                     'width':800,
                      'height':300};
 
       // Instantiate and draw our chart, passing in some options.
