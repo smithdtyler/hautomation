@@ -62,12 +62,17 @@
 <div id="chart_div" style="width:400; height:300"></div>
 <div id="chart2_div" style="width:400; height:400"></div>
 
-{% if latest_sample_list %}
-    <ul>
-    {% for sample in latest_sample_list %}
-        <li>{{ sample }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No samples are available.</p>
-{% endif %}
+<table style="width:600px">
+<tr>
+  <td>Time</td>
+  <td>Office</td> 
+  <td>HVAC</td>
+  <td>Outside</td>
+</tr>
+ {% for sample in last_twentyfour_hours_list %}
+  <tr>
+   <td>{{ sample.timestamp }}</td> <td> {{ sample.officetemp }} </td> <td> {{ sample.hvactemp }}</td> <td> {{ sample.outsidesouthtemp }} </td>
+  </tr>
+ {% endfor %}
+</table>
+
