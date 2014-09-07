@@ -15,6 +15,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    
+
+    # Until I get around to adding proper authentication    
+    url(r'^accounts/login/', include(admin.site.urls)),
+
     url(r'^', include('simpletemp.urls')),
 )

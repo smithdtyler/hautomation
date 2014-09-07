@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from models import Sample
 
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     latest_sample_list = Sample.objects.all().order_by('-timestamp')[:120]
     last_twentyfour_hours_list = Sample.objects.all().filter(timestamp__minute=0).order_by('-timestamp')[:48]

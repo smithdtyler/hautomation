@@ -20,9 +20,10 @@
       data.addColumn('number', 'Office Temp');
       data.addColumn('number', 'HVAC Temp');
       data.addColumn('number', 'Outside Temp');
+      data.addColumn('number', 'Garage Temp');
       data.addRows([
       {% for sample in latest_sample_list %}
-        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}, {{ sample.hvactemp }}, {{ sample.outsidesouthtemp }}],
+        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}, {{ sample.hvactemp }}, {{ sample.outsidesouthtemp }}, {{ sample.garagetemp }} ],
       {% endfor %}
       ]);
 
@@ -41,9 +42,10 @@
       data2.addColumn('number', 'Office Temp');
       data2.addColumn('number', 'HVAC Temp');
       data2.addColumn('number', 'Outside Temp');
+      data2.addColumn('number', 'Garage Temp');
       data2.addRows([
       {% for sample in last_twentyfour_hours_list %}
-        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}, {{ sample.hvactemp }}, {{ sample.outsidesouthtemp }}],
+        [{{ sample.nicetimestamp }}, {{ sample.officetemp }}, {{ sample.hvactemp }}, {{ sample.outsidesouthtemp }}, {{ sample.garagetemp }} ],
       {% endfor %}
       ]);
 
@@ -68,10 +70,11 @@
   <td>Office</td> 
   <td>HVAC</td>
   <td>Outside</td>
+  <td>Garage</td>
 </tr>
  {% for sample in last_twentyfour_hours_list %}
   <tr>
-   <td>{{ sample.timestamp }}</td> <td> {{ sample.officetemp }} </td> <td> {{ sample.hvactemp }}</td> <td> {{ sample.outsidesouthtemp }} </td>
+   <td>{{ sample.timestamp }}</td> <td> {{ sample.officetemp }} </td> <td> {{ sample.hvactemp }}</td> <td> {{ sample.outsidesouthtemp }} </td> <td> {{ sample.garagetemp }} </td>
   </tr>
  {% endfor %}
 </table>

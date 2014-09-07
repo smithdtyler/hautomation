@@ -29,4 +29,4 @@ class Sample(models.Model):
 		utc = self.timestamp.replace(tzinfo=from_zone)
 		# Convert time zone
 		central = utc.astimezone(to_zone)
-        	return str(central) + ' office: ' + str(self.officetemp) + ' hvac: ' + str(self.hvactemp) + ' outside: ' + str(self.outsidesouthtemp)
+        	return str(central) + ' office: ' + str(self.officetemp) + ' hvac: ' + str(self.hvactemp) + ' outside: ' + str(self.outsidesouthtemp) + ' garage: ' + str(self.garagetemp)
