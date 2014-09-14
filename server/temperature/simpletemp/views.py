@@ -20,7 +20,11 @@ def ac(request):
     ac_list = []
     ac_on = False
     total_on = None
+    fourmin = timedelta(minutes=4)
     for i in range(0, len(last_month_list) - 6):
+        if span_duration > fourmin:
+            print "span duration was more than four minutes, skipping"
+            continue      
         if last_month_list[i].hvactemp - last_month_list[i + 2].hvactemp < 3 and not(ac_on):
             # if the temp dropped by 3 degrees in a minute, assume the AC was turned on
             ac_pair = []
@@ -57,8 +61,8 @@ def heat(request):
         if span_duration > fourmin:
             print "span duration was more than four minutes, skipping"
             continue      
-        if heat_on:
-            print "heat is on, start time was " + str(heat_list[-1][0].timestamp) + " hvac temp is " + str(last_month_list[i].hvactemp)
+        #if heat_on:
+            #print "heat is on, start time was " + str(heat_list[-1][0].timestamp) + " hvac temp is " + str(last_month_list[i].hvactemp)
         if last_month_list[i].hvactemp - last_month_list[i + 2].hvactemp > 3 and not(heat_on):
             # if the temp increased by 3 degrees in a minute, assume the heat was turned on
             heat_pair = []
