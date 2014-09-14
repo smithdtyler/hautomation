@@ -1,0 +1,17 @@
+<table style="width:600px">
+<tr>
+  <td>On/Off</td>
+  <td>Time</td>
+  <td>Office</td> 
+  <td>HVAC</td>
+  <td>Outside</td>
+  <td>Garage</td>
+  <td>Duration</td>
+</tr>
+ {% for samplepair in ac_list %}
+  <tr>
+<td>End Time</td><td>{{ samplepair.1.timestamp }}</td> <td> {{ samplepair.1.officetemp|floatformat:2 }} </td> <td> {{ samplepair.1.hvactemp|floatformat:2 }}</td> <td> {{ samplepair.1.outsidesouthtemp|floatformat:2 }} </td> <td> {{ samplepair.1.garagetemp|floatformat:2 }} </td> <td> {{ samplepair.2 }} </td>
+  </tr>
+ {% endfor %}
+</table>
+
