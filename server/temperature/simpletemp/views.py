@@ -1,6 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse
 from models import Sample
+from datetime import timedelta
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -49,9 +50,13 @@ def heat(request):
     heat_list = []
     heat_on = False
     total_on = None
-    # TODO throw out samples where the power was lost
-    # e.g. if the duration between two samples is larger than ~30 seconds, toss the whole entry
+    fourmin = timedelta(minutes=4)
     for i in range(0, len(last_month_list) - 6):
+        span_duration = last_month_list[i].timestamp - last_month_list[i + 6].timestamp
+        #print "span duration is " + str(span_duration)
+        if span_duration > fourmin:
+            print "span duration was more than four minutes, skipping"
+            continue      
         if heat_on:
             print "heat is on, start time was " + str(heat_list[-1][0].timestamp) + " hvac temp is " + str(last_month_list[i].hvactemp)
         if last_month_list[i].hvactemp - last_month_list[i + 2].hvactemp > 3 and not(heat_on):
